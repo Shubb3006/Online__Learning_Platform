@@ -1,0 +1,45 @@
+<?php
+include('navigation.html');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/python.css">
+</head>
+<body>
+    <h1 style="text-align:center; margin:24px;">My courses</h1>
+<div class="popular">
+<?php
+
+require("config.php");
+$sno=$_SESSION['sno'];
+
+$sql1="SELECT * from `mycourses` join `course` where `mycourses`.`person_id`='$sno' and `course`.`id` = `mycourses`.`course_id`";
+$run1 = mysqli_query($con, $sql1);
+while($row1 = mysqli_fetch_assoc($run1)){
+?>
+
+    
+    <div class="cards">
+        <div class="card">
+            <div class="cardm">
+                <div class="cardimg">
+                    <img src="<?php echo $row1['img']; ?>" alt="">
+                </div>
+                <div class="cardtext">
+                    <h2><?php echo $row1['name']; ?></h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, incidunt.</p>
+                </div>
+            </div>       
+        </div>
+    </div>
+
+<?php }?>
+ 
+</div>  
+</body>
+</html>
